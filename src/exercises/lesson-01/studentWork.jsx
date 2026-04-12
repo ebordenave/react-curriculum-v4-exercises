@@ -2,11 +2,26 @@
 //Exercise: Build an "About Me" Component in this file
 
 export default function StudentWork() {
-  //add variables here
+  const studentName = 'Eddie';
+  const studentAge = 40;
+  const studentHobbiesList = [
+    'video games',
+    'board games',
+    'playing table top card games',
+    'reading',
+    'biking',
+  ];
   return (
     <div>
-      {/* add JSX here */}
-      <p> Student output will go here </p>
+      <h1>About Me</h1>
+      <p>
+        Hi! My name is {studentName} and I am {studentAge} years old.
+      </p>
+      <ul>
+        {studentHobbiesList.map((hobby) => (
+          <li key={hobby}>{hobby}</li>
+        ))}
+      </ul>
     </div>
   );
 }
