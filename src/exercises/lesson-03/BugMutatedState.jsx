@@ -10,11 +10,12 @@
 
 import { useState } from 'react';
 export default function BugMutatedState() {
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // it should be const and not let
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    // const newCount = count + 1;
+    // setCount(newCount)
+    setCount((prevCount) => prevCount + 1); // rewrote the logic
   }
 
   return (
@@ -26,4 +27,6 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (Write your explanation here)
+// The count variable is immutable so to resolve this, creating a newCount variable
+// and then setting it to equal count + 1 fixes the issue
+// Now setCount will use the newCount and handle Adding 1 to the original count

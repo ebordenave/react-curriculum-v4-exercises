@@ -1,5 +1,7 @@
 // src/exercises/lesson-03/BugProps.jsx
 
+import { useState, useEffect } from 'react';
+
 /*
   BUG #3 — Props Not Updating
 
@@ -13,19 +15,29 @@
 */
 
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState('Hello, ' + name);
+  // const message = 'Hello, ' + name;
+  useEffect(() => {
+    setMessage('Hello, ' + name);
+  }, [name]);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hello, ' + name + '!');
   }
 
   return (
     <div>
       <p>{message}</p>
-      <button onClick={handleChange}>Change Greeting</button>
+      <button onClick={handleChange}>
+        Change Greeting
+      </button>
     </div>
   );
 }
 
 // Explanation:
-// (Write your explanation here)
+// In React, simply providing a function that changes the data doesn't work because
+// React doesn't track regular variables. Instead, it requires a useState hook to
+// observe the state of the message so the UI knows when to re-render. We then use a
+// useEffect to "watch" the name prop; this way, if the name changes from the outside,
+// the effect triggers and updates our message to match.
