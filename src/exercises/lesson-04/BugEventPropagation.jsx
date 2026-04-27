@@ -17,7 +17,20 @@ export default function BugEventPropagation() {
         style={{ padding: 20, border: '2px solid red' }}
         onClick={handleOuterClick}
       >
-        <button onClick={handleInnerClick}>Click inner button</button>
+        {/* <button
+      onClick={(e) => {
+        e.stopPropagation();
+        alert("Child Button Clicked");
+      }} */}
+        {/* <button onClick={handleInnerClick}>Click inner button</button>  */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleInnerClick();
+          }}
+        >
+          Click inner button
+        </button>
       </div>
     </>
   );
